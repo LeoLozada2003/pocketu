@@ -141,6 +141,72 @@ Room Database
 - Git + GitHub
 - Figma
 
+
+## Cómo probar el CRUD
+
+Para probar correctamente las funcionalidades CRUD de la aplicación PocketU, sigue los siguientes pasos:
+
+### 1. Requisitos previos
+- Tener instalado **Android Studio (Ladybug o superior)**.
+- Tener configurado **JDK 17 o superior**.
+- Tener un emulador Android o dispositivo físico conectado.
+- Proyecto abierto y sincronizado con Gradle.
+
+---
+
+### 2. Ejecutar la aplicación
+1. Abrir el proyecto en Android Studio.
+2. Esperar a que termine la sincronización de Gradle.
+3. Presionar el botón **Run ▶** o ejecutar en un emulador/dispositivo.
+
+---
+
+### 3. Probar CREATE (Crear)
+- Abrir la sección de registro de transacciones.
+- Ingresar datos como:
+    - Tipo: Ingreso o Gasto
+    - Monto
+    - Categoría
+    - Descripción (opcional)
+- Presionar **Guardar**
+- Verificar que el registro aparezca en la lista.
+
+---
+
+### 4. Probar READ (Leer)
+- Ir a la pantalla de movimientos.
+- Verificar que todas las transacciones registradas se muestren correctamente en el RecyclerView.
+- Confirmar que los datos coinciden con los ingresados.
+
+---
+
+### 5. Probar UPDATE (Actualizar)
+- Seleccionar una transacción existente.
+- Modificar algún campo (monto, categoría o descripción).
+- Guardar los cambios.
+- Verificar que la información se haya actualizado en la lista.
+
+---
+
+### 6. Probar DELETE (Eliminar)
+- Seleccionar una transacción.
+- Mantener presionado o presionar el botón de eliminar.
+- Confirmar la eliminación en el diálogo de confirmación.
+- Verificar que el elemento desaparezca de la lista.
+
+---
+
+### 7. Verificación en base de datos (Room)
+- Cerrar la aplicación y volver a abrirla.
+- Confirmar que los datos persisten correctamente.
+- Validar que Room Database mantiene los registros.
+
+---
+
+### 8. Posibles errores comunes
+- La app no muestra datos → verificar que la base de datos esté inicializada.
+- No se guardan registros → revisar validaciones de campos.
+- La lista no se actualiza → verificar LiveData/StateFlow en ViewModel.
 ---
 
 ## Estado del Proyecto
