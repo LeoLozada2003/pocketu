@@ -32,30 +32,24 @@ Desarrollar una aplicación móvil que permita a los estudiantes universitarios 
 
 ### HU-01: Registro de ingresos y egresos
 
-**Como** estudiante universitario,
-
-**quiero** registrar mis ingresos y egresos,
-
+**Como** estudiante universitario,  
+**quiero** registrar mis ingresos y egresos,  
 **para** llevar un control de mis finanzas personales y conocer mi balance disponible.
 
 ---
 
 ### HU-02: Visualización del balance
 
-**Como** estudiante universitario,
-
-**quiero** visualizar mi balance actual,
-
+**Como** estudiante universitario,  
+**quiero** visualizar mi balance actual,  
 **para** conocer cuánto dinero tengo disponible en cualquier momento.
 
 ---
 
 ### HU-03: Consulta de movimientos
 
-**Como** estudiante universitario,
-
-**quiero** consultar mis transacciones registradas,
-
+**Como** estudiante universitario,  
+**quiero** consultar mis transacciones registradas,  
 **para** revisar mis movimientos financieros y controlar mis gastos.
 
 ---
@@ -76,146 +70,95 @@ Desarrollar una aplicación móvil que permita a los estudiantes universitarios 
 
 ## Funcionalidades implementadas
 
-Actualmente la aplicación cuenta con las siguientes funcionalidades implementadas:
-
 - ✅ Inicio de sesión de usuarios.
 - ✅ Registro de nuevos usuarios.
 - ✅ Validación del correo electrónico.
 - ✅ Validación de contraseña (mínimo 6 caracteres).
 - ✅ Validación de campos obligatorios.
 - ✅ Autenticación local mediante Room Database.
-- ✅ Navegación entre las pantallas de Login, Registro y Principal.
+- ✅ Navegación entre Login, Registro y Pantallas principales.
 - ✅ Persistencia local de usuarios.
-- ✅ Mensajes de error para credenciales inválidas y formularios incompletos.
+- ✅ Mensajes de error para credenciales inválidas.
+
+---
+## Arquitectura del Proyecto
+
+Arquitectura basada en MVVM + Repository Pattern:
+
+
+View (UI - Jetpack Compose)
+↓
+ViewModel
+↓
+Repository
+↓
+Room Database
+## API o Notificaciones
+
+- La aplicación **no utiliza APIs externas**
+- Funciona completamente **offline con Room Database**
+
+### Notificaciones (planificado)
+
+- Recordatorios de gastos
+- Alertas de presupuesto mensual
+- Resumen financiero semanal
 
 ---
 
-## Capturas de las funcionalidades implementadas
+## Capturas de la aplicación
 
-### Inicio de sesión
+### Login
 
-![Pantalla de Login](login.png)
+![Login](./images/login.jpg)
 
-### Registro de usuarios
+### Registro
 
-![Pantalla de Registro](register.png)
+![Registro](images/registro.jpg)
+
+### Bienvenida
+
+![Bienvenida](images/bienvenido.jpg)
+
+### Movimientos
+![Movimientos](images/movimientos.jpg)
+
+### Notificaciones
+![Notificaciones](images/notificacion.jpg)
 
 ---
 
 ## Tecnologías Utilizadas
 
-### Framework y herramientas
-
-- Android Studio
 - Kotlin
 - Jetpack Compose
 - Material Design 3
-- Arquitectura MVP (Modelo - Vista - Presentador)
+- MVVM
+- Repository Pattern
 - Room Database
-- Git
-- GitHub
-- Figma (Prototipado y diseño UX/UI)
+- ViewModel
+- Android Studio
+- Git + GitHub
+- Figma
 
 ---
 
-## Arquitectura del Proyecto
+## Estado del Proyecto
 
-El proyecto sigue el patrón de arquitectura MVP (Model-View-Presenter), permitiendo una mejor separación de responsabilidades entre la interfaz de usuario, la lógica de negocio y la gestión de datos.
+🟡 En desarrollo
 
-```text
-View
-  ↓
-Presenter
-  ↓
-Model
-```
+### Completado:
+- Login y registro
+- Validaciones
+- Room Database
+- Navegación
+- Arquitectura MVVM base
 
----
-
-## Instalación
-
-### Requisitos
-
-- Android Studio Ladybug o superior
-- JDK 17+
-- Android SDK 35
-- Git
-
-### Clonar el repositorio
-
-```bash
-git clone https://github.com/usuario/pocketu.git
-```
-
-### Abrir el proyecto
-
-1. Abrir Android Studio.
-2. Seleccionar **Open Project**.
-3. Elegir la carpeta del proyecto.
-4. Esperar la sincronización de Gradle.
-5. Ejecutar la aplicación en un emulador o dispositivo Android.
-
----
-
-## Capturas de Pantalla
-
-### Pantalla de Bienvenida
-
-![Pantalla de Bienvenida](bienvenida.png)
-
-### Pantalla Principal
-
-![Pantalla Principal](dashboard.png)
-
-### Pantalla de Nueva Transacción
-
-![Pantalla de Nueva Transacción](transaccion.png)
-
----
-
-## Diseño y Prototipado
-
-Las interfaces fueron diseñadas en Figma siguiendo las recomendaciones de Material Design 3 y posteriormente evaluadas mediante pruebas de usabilidad con usuarios.
-
-### Principales mejoras realizadas
-
-- Mayor claridad en los botones de navegación.
-- Mejor jerarquía visual.
-- Incremento del contraste de textos.
-- Optimización de accesibilidad.
-- Mejor comprensión del flujo principal del usuario.
-
----
-
-## Estado Actual del Proyecto
-
-🟡 **En desarrollo**
-
-Actualmente se encuentra completada la fase de:
-
-- ✅ Investigación del problema.
-- ✅ Definición de requerimientos.
-- ✅ Historias de usuario.
-- ✅ Diseño UX/UI.
-- ✅ Wireframes.
-- ✅ Prototipo de alta fidelidad en Figma.
-- ✅ Evaluación de usabilidad.
-- ✅ Refinamiento del MVP.
-- ✅ Implementación del inicio de sesión.
-- ✅ Implementación del registro de usuarios.
-- ✅ Validaciones de formularios.
-- ✅ Integración de Room Database.
-- ✅ Navegación entre pantallas.
-
-### Próximas actividades
-
-- Implementación del registro de ingresos.
-- Implementación del registro de gastos.
-- Visualización del balance.
-- Gestión de categorías.
-- Historial de transacciones.
-- Resumen financiero mensual.
-- Pruebas funcionales y optimización.
+### Pendiente:
+- Ingresos y egresos
+- Balance dinámico
+- Notificaciones reales
+- Historial de transacciones
 
 ---
 
@@ -223,10 +166,8 @@ Actualmente se encuentra completada la fase de:
 
 **Erick Lozada**
 
-Proyecto académico desarrollado para la asignatura de Desarrollo de Aplicaciones Móviles.
-
 ---
 
 ## Licencia
 
-Este proyecto tiene fines académicos y educativos.
+Proyecto de uso académico y educativo.
