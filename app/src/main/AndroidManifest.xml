@@ -16,9 +16,11 @@
             android:name=".MovimientosActivity"
             android:exported="false" />
 
+        <!-- AQUÍ ESTÁ LA MAGIA: Agregamos el windowSoftInputMode -->
         <activity
             android:name=".AgregarMovimientoActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
 
         <activity
             android:name=".BienvenidaActivity"

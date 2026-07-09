@@ -19,14 +19,18 @@ class AgregarMovimientoActivity : AppCompatActivity() {
 
     private lateinit var edtDescripcion: EditText
     private lateinit var edtMonto: EditText
-    private lateinit var edtCategoria: EditText
+    // CAMBIO 1: Declaramos el Spinner para la categoría en lugar de EditText
+    private lateinit var spCategoria: Spinner
     private lateinit var edtFecha: EditText
     private lateinit var spTipo: Spinner
     private lateinit var btnGuardar: Button
 
     private var modoEditar = false
     private var movimientoId = 0
-    private var usuarioId = 0 // <-- Variable para guardar el ID del usuario
+    private var usuarioId = 0
+
+    // Lista de categorías predefinidas
+    private val opcionesCategoria = arrayOf("Comida", "Transporte", "Académico", "Entretenimiento", "Otros")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,17 +39,25 @@ class AgregarMovimientoActivity : AppCompatActivity() {
         // 1. Enlazamos las vistas con los IDs del XML
         edtDescripcion = findViewById(R.id.edtDescripcion)
         edtMonto = findViewById(R.id.edtMonto)
-        edtCategoria = findViewById(R.id.edtCategoria)
+        // CAMBIO 2: Enlazamos el nuevo ID del Spinner
+        spCategoria = findViewById(R.id.spCategoria)
         edtFecha = findViewById(R.id.edtFecha)
         spTipo = findViewById(R.id.spTipo)
         btnGuardar = findViewById(R.id.btnGuardar)
 
-        // 2. Configuramos el Spinner (Ingreso / Gasto)
-        val opciones = arrayOf("Ingreso", "Gasto")
+        // 2. Configuramos el Spinner de Tipo (Ingreso / Gasto)
+        val opcionesTipo = arrayOf("Ingreso", "Gasto")
         spTipo.adapter = ArrayAdapter(
             this,
             android.R.layout.simple_spinner_dropdown_item,
-            opciones
+            opcionesTipo
+        )
+
+        // CAMBIO 3: Configuramos el nuevo Spinner de Categorías
+        spCategoria.adapter = ArrayAdapter(
+            this,
+            android.R.layout.simple_spinner_dropdown_item,
+            opcionesCategoria
         )
 
         // 3. Verificamos si vamos a editar un registro o a crear uno nuevo, y obtenemos el usuario
@@ -55,16 +67,16 @@ class AgregarMovimientoActivity : AppCompatActivity() {
         btnGuardar.setOnClickListener {
             val descripcion = edtDescripcion.text.toString().trim()
             val montoTexto = edtMonto.text.toString().trim()
-            val categoria = edtCategoria.text.toString().trim()
             val fechaIngresada = edtFecha.text.toString().trim()
             val tipo = spTipo.selectedItem.toString()
+            // CAMBIO 4: Obtenemos el texto del item seleccionado en el Spinner
+            val categoria = spCategoria.selectedItem.toString()
 
-            if (descripcion.isEmpty() || montoTexto.isEmpty() || categoria.isEmpty() || fechaIngresada.isEmpty()) {
+            if (descripcion.isEmpty() || montoTexto.isEmpty() || fechaIngresada.isEmpty()) {
                 Toast.makeText(this, "Complete todos los campos", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            // --- NUEVA VALIDACIÓN: Convertimos el texto a número de forma segura ---
             val montoValidado = montoTexto.toDoubleOrNull() ?: 0.0
 
             if (montoValidado <= 0) {
@@ -75,11 +87,11 @@ class AgregarMovimientoActivity : AppCompatActivity() {
             // Construimos el objeto
             val movimiento = Movimiento(
                 id = if (modoEditar) movimientoId else 0,
-                usuarioId = usuarioId, // <-- Le asignamos el movimiento al usuario correcto
+                usuarioId = usuarioId,
                 descripcion = descripcion,
-                monto = montoValidado, // <-- Usamos la variable que ya validamos
+                monto = montoValidado,
                 tipo = tipo,
-                categoria = categoria,
+                categoria = categoria, // Se guarda la categoría seleccionada
                 fecha = fechaIngresada
             )
 
@@ -115,15 +127,21 @@ class AgregarMovimientoActivity : AppCompatActivity() {
 
             edtDescripcion.setText(intent.getStringExtra("DESCRIPCION"))
             edtMonto.setText(intent.getDoubleExtra("MONTO", 0.0).toString())
-            edtCategoria.setText(intent.getStringExtra("CATEGORIA"))
             edtFecha.setText(intent.getStringExtra("FECHA"))
 
-            // Seleccionamos el valor correcto en el Spinner
+            // Seleccionamos el valor correcto en el Spinner de Tipo
             val tipoOriginal = intent.getStringExtra("TIPO")
             if (tipoOriginal == "Gasto") {
                 spTipo.setSelection(1) // Índice 1 es Gasto
             } else {
                 spTipo.setSelection(0) // Índice 0 es Ingreso
+            }
+
+            // CAMBIO 5: Seleccionamos el valor correcto en el Spinner de Categorías
+            val categoriaOriginal = intent.getStringExtra("CATEGORIA")
+            val indexCategoria = opcionesCategoria.indexOf(categoriaOriginal)
+            if (indexCategoria >= 0) {
+                spCategoria.setSelection(indexCategoria)
             }
 
             btnGuardar.text = "Actualizar Movimiento"
