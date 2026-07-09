@@ -115,27 +115,15 @@ class MainActivity : AppCompatActivity() {
                 mostrarCarga(false)
 
                 if (usuario != null) {
+                    Toast.makeText(this@MainActivity, "Inicio de sesión correcto", Toast.LENGTH_SHORT).show()
 
-                    Toast.makeText(
-                        this@MainActivity,
-                        "Inicio de sesión correcto",
-                        Toast.LENGTH_SHORT
-                    ).show()
-
-                    val intent = Intent(
-                        this@MainActivity,
-                        BienvenidaActivity::class.java
-                    )
-
-                    intent.putExtra(
-                        "NOMBRE_USUARIO",
-                        usuario.nombre
-                    )
+                    val intent = Intent(this@MainActivity, BienvenidaActivity::class.java)
+                    intent.putExtra("NOMBRE_USUARIO", usuario.nombre)
+                    intent.putExtra("USUARIO_ID", usuario.id) // <-- NUEVO: Enviamos el ID
 
                     startActivity(intent)
                     finish()
-
-                } else {
+                }else {
 
                     Toast.makeText(
                         this@MainActivity,

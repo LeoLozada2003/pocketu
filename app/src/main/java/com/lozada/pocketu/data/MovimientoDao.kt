@@ -15,8 +15,9 @@ interface MovimientoDao {
     @Delete
     suspend fun eliminarMovimiento(movimiento: Movimiento)
 
-    @Query("SELECT * FROM movimientos ORDER BY id DESC")
-    fun obtenerMovimientos(): LiveData<List<Movimiento>>
+    // Modifica esta línea para que filtre por usuarioId
+    @Query("SELECT * FROM movimientos WHERE usuarioId = :usuarioId ORDER BY id DESC")
+    fun obtenerMovimientos(usuarioId: Int): LiveData<List<Movimiento>>
 
     // READ - Obtener solo el último movimiento registrado
     @Query("SELECT * FROM movimientos ORDER BY id DESC LIMIT 1")

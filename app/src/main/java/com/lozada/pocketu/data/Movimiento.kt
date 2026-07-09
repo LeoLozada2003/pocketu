@@ -9,6 +9,8 @@ data class Movimiento(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
 
+    val usuarioId: Int, // <-- NUEVO: Relaciona el movimiento con el usuario
+
     val descripcion: String,
 
     val monto: Double,

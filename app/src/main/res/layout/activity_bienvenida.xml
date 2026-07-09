@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -72,7 +71,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvMensajeBienvenida" />
 
-
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnVerMovimientos"
             android:layout_width="0dp"
@@ -91,7 +89,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvDescripcionBienvenida" />
 
-
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnAgregarMovimiento"
             android:layout_width="0dp"
@@ -107,12 +104,26 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btnVerMovimientos" />
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnCerrarSesion"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Cerrar sesión"
+            android:textAllCaps="false"
+            android:textColor="#D32F2F"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnAgregarMovimiento" />
 
         <TextView
             android:id="@+id/tvPieBienvenida"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="80dp"
             android:layout_marginBottom="35dp"
             android:text="Controla tus finanzas de forma fácil y segura"
             android:textColor="#9CA3AF"
@@ -120,8 +131,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btnAgregarMovimiento" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            app:layout_constraintTop_toBottomOf="@id/btnCerrarSesion" /> </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>
